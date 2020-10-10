@@ -39,6 +39,6 @@ server.addService(protoDescriptor.NoteService.service, {
 
 server.bind(`localhost:${port}`, grpc.ServerCredentials.createInsecure())
 
-console.log('Server running at http://localhost: 3000')
+console.log(`Server running at http://localhost: ${port}`)
 
 server.start()
