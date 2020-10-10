@@ -1,44 +1,30 @@
-const grpc = require('grpc')
-const PROTO_PATH = 'notes.proto';
-const protoLoader = require('@grpc/proto-loader');
-// Suggested options for similarity to existing grpc.load behavior
-const packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
-    {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
-    });
-const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 
-const notes = [
-    { id: 1, title: 'Note 1'},
-    { id: 2, title: 'Note 2'},
-	{ id: 1, title: 'Note 1'},
-    { id: 2, title: 'Note 2'}
-];
-function checkFeature(point){
-	console.log(point);
-	console.log(notes);
-	return notes;
-}
+const express = require("express");
+const cors = require('cors');
+var bodyParser = require('body-parser');
 
-const server = new grpc.Server()
+// const fs = require("fs");
 
-// The protoDescriptor object has the full package hierarchy
-// var routeguide = protoDescriptor.routeguide;
-let port = process.env.PORT || 3000;
-server.addService(protoDescriptor.NoteService.service, {
-    ListValue: (_, callback) => {
-       
-        callback(null, {notes});
-    },
- 
+
+const app = express();
+let port =process.env.PORT || 5000;
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
+app.use(cors());
+
+app.use(express.static('views'))
+
+app.get('/',(req,res)=>{
+	res.sendFile('views/app.html', { root: __dirname })
 })
 
-server.bind(`localhost:${port}`, grpc.ServerCredentials.createInsecure())
+app.post("/", function(req,res){
+	
+	console.log(req.body)
+	res.sendFile('views/app.html', { root: __dirname })
+	//res.send(req.body)
+	// res.send("hi welcome");
+});
 
-console.log('Server running at http://localhost: 3000')
-
-server.start()
+app.listen(port,()=>{console.log(`running on ${port}`)});
