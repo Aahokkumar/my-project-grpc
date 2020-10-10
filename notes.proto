@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Note {
+    int32 id = 1;
+    string title = 2;
+ }
+
+service NoteService {
+    rpc ListValue (EmptyRequest) returns (EmptyReply) {}
+ 
+}
+
+message EmptyRequest {
+  int32 id = 1;
+}
+
+message EmptyReply {
+   repeated Note notes = 1;
+}
