@@ -1,22 +1,13 @@
 {
-  "name": "grpccom",
+  "name": "my-project-grpc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Harika-Soma/GRPC.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Harika-Soma/GRPC/issues"
-  },
-  "homepage": "https://github.com/Harika-Soma/GRPC#readme",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.5",
     "grpc": "^1.24.3"

@@ -11,7 +11,7 @@ service NoteService {
 }
 
 message EmptyRequest {
-  int32 id = 1;
+  
 }
 
 message EmptyReply {
